@@ -11,33 +11,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/admin")
-     */
-    public function admin()
-    {
-        return new Response('<html><body>Admin page!</body></html>');
-    }
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
 
-
-    /**
-     * @Route("registration", name="registration")
-     */
-    public function registrationAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('registration/register.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
-    }
 }
