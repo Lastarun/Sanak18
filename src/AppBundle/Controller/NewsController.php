@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\News;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -19,6 +21,34 @@ class NewsController extends Controller
             'user' => null,
             'news' => null
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function createAction(Request $request)
+    {
+        $news= new News();
+        $form = $this->CreateFormBuilder($news)
+            ->add('title', TextType::class)
+            ->add('content', TextType::class)
+            ->getForm();
+        $form ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $news = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager ->persist($news);
+            $entityManager -> flush();
+
+            return $this-> redirectToRoute('news_success');
+        }
+
+        return $this->render('news/news.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
 }

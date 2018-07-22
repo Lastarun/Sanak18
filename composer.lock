@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7692acc8aa41e771dd2489cfcbc323f8",
+    "content-hash": "47fa1fdf5be06ed6d8ce5be6234f4087",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -2434,6 +2434,34 @@
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
             "time": "2018-06-10T07:25:02+00:00"
+        },
+        {
+            "name": "symfony/profiler-pack",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/profiler-pack.git",
+                "reference": "fa2e2dad522a3bef322196abad28ffce6d0fdbc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/profiler-pack/zipball/fa2e2dad522a3bef322196abad28ffce6d0fdbc5",
+                "reference": "fa2e2dad522a3bef322196abad28ffce6d0fdbc5",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0",
+                "symfony/stopwatch": "^3.3|^4.0",
+                "symfony/twig-bundle": "^3.3|^4.0",
+                "symfony/web-profiler-bundle": "^3.3|^4.0"
+            },
+            "type": "symfony-pack",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A pack for the Symfony web profiler",
+            "time": "2017-12-12T01:48:24+00:00"
         }
     ],
     "aliases": [],
@@ -2444,8 +2472,5 @@
     "platform": {
         "php": ">=5.5.9"
     },
-    "platform-dev": [],
-    "platform-overrides": {
-        "php": "5.6"
-    }
+    "platform-dev": []
 }
