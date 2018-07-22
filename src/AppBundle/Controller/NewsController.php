@@ -22,10 +22,19 @@ class NewsController extends Controller
             'news' => null
         ]);
     }
+    /**
+     * @Route("/news/{id}",name="feed")
+     * @param $id
+     */
+    public function showAction($id)
+    {
+        $repo =
+    }
 
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route("/news/new", name="create")
      */
     public function createAction(Request $request)
     {
@@ -34,8 +43,8 @@ class NewsController extends Controller
             ->add('title', TextType::class)
             ->add('content', TextType::class)
             ->getForm();
-        $form ->handleRequest($request);
 
+        $form ->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
             $news = $form->getData();

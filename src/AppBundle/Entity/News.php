@@ -48,8 +48,7 @@ class News
      */
     public function getId()
     {
-
-
+        return $this->id;
     }
 
     /**
