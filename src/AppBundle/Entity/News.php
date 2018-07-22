@@ -23,7 +23,7 @@ class News
     private $title;
 
     /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      */
     private $date;
 
@@ -48,8 +48,7 @@ class News
      */
     public function getId()
     {
-
-
+        return $this->id;
     }
 
     /**
