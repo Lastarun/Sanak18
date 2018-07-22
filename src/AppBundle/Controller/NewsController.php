@@ -40,7 +40,8 @@ class NewsController extends Controller
      */
     public function showAction($id)
     {
-
+        $repo = $this->getDoctrine()->getRepository(Account::class);
+        
     }
 
 

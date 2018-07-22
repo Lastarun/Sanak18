@@ -6,8 +6,10 @@
         public function findNewsById($id)
         {
             return $this->getEntityManager()->
-                CreateQuery(
-                    ''
+                createQuery(
+                    'SELECT n FROM AppBundle:News n WHERE n.id=:id'
             )
+            ->setParameter('id', $id)
+                ->getOneOrNullResult();
         }
     }
