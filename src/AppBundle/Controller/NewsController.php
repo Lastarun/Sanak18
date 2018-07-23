@@ -67,7 +67,7 @@ class NewsController extends Controller
             $entityManager ->persist($news);
             $entityManager -> flush();
 
-            return $this-> redirectToRoute('news_success', array('id'=>1));
+            return $this-> redirectToRoute('show_news', array('id'=>1));
         }
 
         return $this->render('news/create_news.html.twig', array(
