@@ -35,13 +35,13 @@ class NewsController extends Controller
         ]);
     }
     /**
-     * @Route("/news/{id}",name="feed")
+     * @Route("/news/{id}",name="show_news")
      * @param $id
      */
     public function showAction($id)
     {
-        $repo = $this->getDoctrine()->getRepository(Account::class);
-        
+        $repo = $this->getDoctrine()->getRepository(News::class);
+
     }
 
 
@@ -67,7 +67,7 @@ class NewsController extends Controller
             $entityManager ->persist($news);
             $entityManager -> flush();
 
-            return $this-> redirectToRoute('news_success');
+            return $this-> redirectToRoute('news_success', array('id'=>1));
         }
 
         return $this->render('news/create_news.html.twig', array(
