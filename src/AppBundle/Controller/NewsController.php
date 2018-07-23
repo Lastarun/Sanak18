@@ -35,8 +35,8 @@ class NewsController extends Controller
         ]);
     }
     /**
-     * @Route("/news/{id}",name="show_news")
-     * @param $id
+     * @Route("/news/{id}",name="show_news", requirements={"id"="\d+"})
+     * @param integer $id
      */
     public function showAction($id)
     {
