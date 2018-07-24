@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\News;
+use AppBundle\Entity\Comment;
+use AppBundle\Form\CommentType;
 use AppBundle\Form\NewsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -74,5 +76,31 @@ class NewsController extends Controller
             'form' => $form->createView(),
         ));
     }
+    /**
+     * @param Request $request
+     * @Route("/news/comment", name="create_comment")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
 
+    public function createCommentAction(Request $request)
+    {
+        $comment= new Comment();
+
+        $form = $this->createForm( CommentType::class, $comment );
+
+        $form ->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $comment = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager ->persist($comment);
+            $entityManager -> flush();
+
+            return $this-> redirectToRoute('show_news', array('id'=>1));
+        }
+
+        return $this->render('news/create_news.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 }
