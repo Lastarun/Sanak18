@@ -5,5 +5,8 @@
         {{ comment.content }}
     {% endfor %}
 
-
+    {{ form_start(form) }}
+    {{ form_row(form.content) }}
+    <button type="submit">Добавить комментарий</button>
+    {{ form_end (form) }}
 {% endblock %}

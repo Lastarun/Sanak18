@@ -27,7 +27,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => News::class,
+            'data_class' => Comment::class,
         ));
     }
 }
