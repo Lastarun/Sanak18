@@ -10,7 +10,7 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
     {
         return $this->getEntityManager()->
         createQuery(
-            'SELECT n FROM AppBundle:News n WHERE n.id=:id'
+            'SELECT n FROM AppBundle:News n WHERE n.id=:id '
         )
             ->setParameter('id', $id)
             ->getOneOrNullResult();

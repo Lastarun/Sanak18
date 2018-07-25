@@ -21,10 +21,15 @@ class NewsController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
+        $user = $this->getUser();
+        $repo = $this->getDoctrine()->getRepository(News::class);
+
+        $news = $repo->findAll();
         return $this->render('news/index.html.twig', [
-            'user' => null,
-            'news' => null
+            'user' => $user,
+            'news' => $news
         ]);
+
     }
 
     /**
@@ -33,10 +38,15 @@ class NewsController extends Controller
     public function feedAction(Request $request)
     {
         // replace this example code with whatever you need
+        $user = $this->getUser();
+        $repo = $this->getDoctrine()->getRepository(News::class);
+
+        $news = $repo->findAll();
         return $this->render('news/news.html.twig', [
-            'user' => null,
-            'news' => null
+            'user' => $user,
+            'news' => $news
         ]);
+
     }
 
     /**
@@ -59,6 +69,7 @@ class NewsController extends Controller
         ));
 
     }
+
 
 
     /**
