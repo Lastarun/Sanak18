@@ -118,6 +118,8 @@ class NewsController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             $comment = $form->getData();
+            $comment ->setDate(time());
+            $comment -> setNewsId($id);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager ->persist($comment);
             $entityManager -> flush();
