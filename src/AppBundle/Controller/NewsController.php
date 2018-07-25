@@ -36,13 +36,25 @@ class NewsController extends Controller
             'news' => null
         ]);
     }
+
     /**
      * @Route("/news/{id}",name="show_news", requirements={"id"="\d+"})
      * @param integer $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction($id)
     {
+        $user = $this->getUser();
         $repo = $this->getDoctrine()->getRepository(News::class);
+        $commentsRepo = $this->getDoctrine()->getRepository(Comment::class);
+
+        $news = $repo->find($id);
+        $comment = $commentsRepo->findByNewsId($id);
+        return $this->render('News/news.html.twig', array(
+            'user'=> $user,
+            'news' => $news,
+            'comments' => $comment
+        ));
 
     }
 
@@ -78,11 +90,12 @@ class NewsController extends Controller
     }
     /**
      * @param Request $request
-     * @Route("/news/comment", name="create_comment")
+     * @Route("/news/{id}/comment", name="create_comment",  requirements={"id"="\d+"})
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param integer $id
      */
 
-    public function createCommentAction(Request $request)
+    public function createCommentAction(Request $request, $id)
     {
         $comment= new Comment();
 
@@ -96,11 +109,8 @@ class NewsController extends Controller
             $entityManager ->persist($comment);
             $entityManager -> flush();
 
-            return $this-> redirectToRoute('show_news', array('id'=>1));
         }
 
-        return $this->render('news/create_news.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this-> redirectToRoute('show_news', array('id'=>1));
     }
 }
