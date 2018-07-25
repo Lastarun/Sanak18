@@ -42,7 +42,7 @@ class NewsController extends Controller
         $repo = $this->getDoctrine()->getRepository(News::class);
 
         $news = $repo->findAll();
-        return $this->render('news/news.html.twig', [
+        return $this->render('news/index.html.twig', [
             'user' => $user,
             'news' => $news
         ]);
@@ -89,7 +89,7 @@ class NewsController extends Controller
             $news = $form->getData();
             $news->setDate(time());
             $news->setStatus(true);
-            $news->setAutor($this->getUser());
+//            $news->setAuthor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($news);
             $entityManager->flush();

@@ -1,3 +1,9 @@
 {% block body %}
+    <h1>{{ news.title }}</h1>
+    {{ news.content }}
+    {% for comment in comments %}
+        {{ comment.content }}
+    {% endfor %}
+
 
 {% endblock %}

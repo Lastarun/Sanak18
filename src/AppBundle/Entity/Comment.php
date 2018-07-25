@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommentRepository")
- * @ORM\Table(name="news")s
+ * @ORM\Table(name="comment")
  */
 class Comment
 {
@@ -26,7 +26,7 @@ class Comment
      */
     private $author;
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\News")
      * @ORM\JoinColumn(name="news_id", referencedColumnName="id")
      */
     private $news_id;

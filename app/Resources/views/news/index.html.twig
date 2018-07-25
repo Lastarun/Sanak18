@@ -1,1 +1,4 @@
-tryuhijk
+{% for article in news %}
+    <h1>{{ article.title }}</h1>
+    <div>{{ article.content }}</div>
+{% endfor %}
