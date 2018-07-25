@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class NewsController extends Controller
@@ -25,6 +26,7 @@ class NewsController extends Controller
             'news' => null
         ]);
     }
+
     /**
      * @Route("/news", name="feed")
      */
@@ -67,21 +69,21 @@ class NewsController extends Controller
      */
     public function createAction(Request $request)
     {
-        $news= new News();
+        $news = new News();
 
-        $form = $this->createForm( NewsType::class, $news );
-        $form ->handleRequest($request);
+        $form = $this->createForm(NewsType::class, $news);
+        $form->handleRequest($request);
 
-
-        $form ->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $news = $form->getData();
+            $news->setDate(time());
+            $news->setStatus(true);
+            $news->setAutor($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager ->persist($news);
-            $entityManager -> flush();
+            $entityManager->persist($news);
+            $entityManager->flush();
 
-            return $this-> redirectToRoute('show_news', array('id'=>1));
+            return $this->redirectToRoute('show_news', array('id' => 1));
         }
 
         return $this->render('news/create_news.html.twig', array(
