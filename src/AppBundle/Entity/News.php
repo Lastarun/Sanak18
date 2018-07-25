@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="news")
- */
+*/
 class News
 {
     /**
@@ -41,7 +41,7 @@ class News
     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
     * @ORM\JoinColumn(name="creator_id", referencedColumnName="id")
     */
-    private $autor;
+    private $author;
 
     /**
      * @return mixed
@@ -126,17 +126,17 @@ class News
     /**
      * @return mixed
      */
-    public function getAutor()
+    public function getAuthor()
     {
-        return $this->autor;
+        return $this->author;
     }
 
     /**
      * @param mixed $autor
      */
-    public function setAutor($autor)
+    public function setAuthor($author)
     {
-        $this->autor = $autor;
+        $this->author = $author;
     }
 
 
